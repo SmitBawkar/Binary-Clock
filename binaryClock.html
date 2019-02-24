@@ -1,0 +1,181 @@
+<!DOCTYPE html> 
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<head>
+    <title>Home</title>
+	
+    <script>
+        $(document).ready(function() {
+
+            var timmersec = setInterval(function(){
+               var d = new Date();
+               var  hh = addZero(d.getHours());                
+               var  mm = addZero(d.getMinutes());
+               var  ss = addZero(d.getSeconds());            
+                $('#lbl').html(hh+':'+mm+':'+ss) 
+
+               paintTime(hh,'h','red');
+               paintTime(mm,'m','green');
+               paintTime(ss,'s','blue'); 
+                                       
+            },1000);
+
+
+    function paintTime(num,datepart,color){
+        if(num==59 && datepart=='s')
+             $('.mmclock').css('background-color','white')
+        
+        if(num==00 && datepart=='m')
+             $('.hhclock').css('background-color','white')
+
+         $('.ssclock').css('background-color','white')
+        var count=0;
+        var selector;
+        var index;
+        
+        var binary = Array.from(( Array.from(num.toString())[0] >>> 0).toString(2)).reverse();
+       
+            for (var i=0;i<binary.length;i++){
+                 console.log(binary[i]+' '+i);
+                 console.log(binary[i] > 0);
+                 index=i+1;
+                if(binary[i] > 0)
+                {
+                    var selector = '#'+datepart+index;
+                    console.log(selector);
+                $(selector).css('background-color',color);
+                }
+                
+            }
+         index=0;
+         binary = Array.from(( Array.from(num.toString())[1] >>> 0).toString(2)).reverse();
+          console.log(binary.toString())  
+            for (var i=0;i<binary.length;i++){
+            console.log(binary[i]+' '+i);
+              console.log(binary[i] > 0);
+                 index=i+1;
+                if(binary[i] > 0)
+                {
+                    var selector = '#'+datepart+datepart+index;
+                   console.log(selector);
+                $(selector).css('background-color',color);
+                }
+                
+            }    
+        
+    }   
+            
+    } );
+
+function addZero(i) {
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
+}
+    </script>
+    <style>
+        div{
+            width:20px;
+            height: 20px;
+            border: solid 1px gray;
+        }
+        </style>
+</head>
+<body>
+    <table>
+        <tr>    
+            <th>H</th>
+            <th>H</th>
+            <th>M</th>
+            <th>M</th>
+            <th>S</th>
+            <th>S</th>
+            
+            </tr>
+        <tr>
+            <td>
+                <div id='h4' class='hhclock'></div>
+            </td>
+            <td>
+                <div id='hh4' class='hhclock'></div>
+            </td>
+            <td>
+                <div id='m4' class='mmclock'></div>
+            </td>
+            <td>
+                <div id='mm4' class='mmclock'></div>
+            </td>
+            <td>
+                <div id='s4' class='ssclock'></div>
+            </td>
+            <td>
+                <div id='ss4' class='ssclock'></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id='h3' class='hhclock'></div>
+            </td>
+            <td>
+                <div id='hh3' class='hhclock'></div>
+            </td>
+            <td>
+                <div id='m3' class='mmclock'></div>
+            </td>
+            <td>
+                <div id='mm3' class='mmclock'></div>
+            </td>
+             <td>
+                <div id='s3' class='ssclock'></div>
+            </td>
+            <td>
+                <div id='ss3' class='ssclock'></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id='h2' class='hhclock'></div>
+            </td>
+            <td>
+                <div id='hh2' class='hhclock'></div>
+            </td>
+            <td>
+                <div id='m2' class='mmclock'></div>
+            </td>
+            <td>
+                <div id='mm2' class='mmclock'></div>
+            </td>
+            <td>
+                <div id='s2' class='ssclock'></div>
+            </td>
+            <td>
+                <div id='ss2' class='ssclock'></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id='h1' class='hhclock'></div>
+            </td>
+            <td>
+                <div id='hh1' class='hhclock'></div>
+            </td>
+            <td>
+                <div id='m1' class='mmclock'></div>
+            </td>
+            <td>
+                <div id='mm1' class='mmclock'></div>
+            </td>
+            <td>
+                <div id='s1' class='ssclock'></div>
+            </td>
+            <td>
+                <div id='ss1' class='ssclock'></div>
+            </td>
+        </tr>
+        
+    </table>
+</br>
+    <label id="lbl"></label>
+</body>
+
+</html>
